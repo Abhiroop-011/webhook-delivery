@@ -1,0 +1,8 @@
+target/
+.env
+.idea/
+.vscode/
+*.iml
+*.log
+__pycache__/
+benchmarks/local/
