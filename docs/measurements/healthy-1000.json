@@ -1,0 +1,18 @@
+{
+  "utc": "2026-11-25T09:03:26.692079+00:00",
+  "runId": "5cfb1472-1f62-4aec-8475-9ca54c7c798a",
+  "requested": 1000,
+  "clients": 4,
+  "uniqueAccepted": 1000,
+  "states": {
+    "DELIVERED": 1000
+  },
+  "attempts": {
+    "ACKNOWLEDGED": 1000,
+    "UNKNOWN": 2
+  },
+  "verifiedWarehouseReceipts": 1000,
+  "ingestEventsPerSecond": 187.69,
+  "secondsUntilObservedDrain": 44.5,
+  "p95AcceptanceToAckMs": 38416.35
+}

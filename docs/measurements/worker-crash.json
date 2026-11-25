@@ -1,0 +1,40 @@
+{
+    "history":  {
+                    "event":  {
+                                  "id":  "b8819338-732a-43d5-b06f-cb578556c34f",
+                                  "destination":  "warehouse",
+                                  "eventType":  "order.created",
+                                  "state":  "DELIVERED",
+                                  "totalAttempts":  2,
+                                  "replayCount":  0,
+                                  "createdAt":  "2026-11-25T09:10:52.653880Z",
+                                  "updatedAt":  "2026-11-25T09:11:11.564708Z"
+                              },
+                    "attempts":  [
+                                     {
+                                         "number":  1,
+                                         "startedAt":  "2026-11-25T09:11:01.350522Z",
+                                         "finishedAt":  "2026-11-25T09:11:10.662974Z",
+                                         "outcome":  "UNKNOWN",
+                                         "httpStatus":  null,
+                                         "latencyMs":  null,
+                                         "detail":  "Lease expired before the sender recorded a result"
+                                     },
+                                     {
+                                         "number":  2,
+                                         "startedAt":  "2026-11-25T09:11:11.386139Z",
+                                         "finishedAt":  "2026-11-25T09:11:11.564708Z",
+                                         "outcome":  "ACKNOWLEDGED",
+                                         "httpStatus":  204,
+                                         "latencyMs":  118,
+                                         "detail":  "HTTP 204"
+                                     }
+                                 ]
+                },
+    "utc":  "2026-11-25T09:11:11.6743408Z",
+    "warehouseReceipt":  {
+                             "eventId":  "b8819338-732a-43d5-b06f-cb578556c34f",
+                             "saved":  true
+                         },
+    "method":  "SIGKILL of both Compose workers after observing DELIVERING, followed by restart"
+}

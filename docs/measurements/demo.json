@@ -1,0 +1,194 @@
+{
+  "utc": "2026-11-25T09:02:26.478609+00:00",
+  "runId": "aec9ddb3-a792-4867-945b-8d074dd440fc",
+  "api": "http://127.0.0.1:8080",
+  "receiver": "http://127.0.0.1:8081",
+  "scenarios": [
+    {
+      "scenario": "16 concurrent identical submissions and conflicting reuse",
+      "history": {
+        "event": {
+          "id": "d31f6f1f-4d1a-4ecf-bf7a-f67ab75b7034",
+          "destination": "warehouse",
+          "eventType": "order.created",
+          "state": "DELIVERED",
+          "totalAttempts": 1,
+          "replayCount": 0,
+          "createdAt": "2026-11-25T09:02:08.497782Z",
+          "updatedAt": "2026-11-25T09:02:08.635866Z"
+        },
+        "attempts": [
+          {
+            "number": 1,
+            "startedAt": "2026-11-25T09:02:08.600327Z",
+            "finishedAt": "2026-11-25T09:02:08.635866Z",
+            "outcome": "ACKNOWLEDGED",
+            "httpStatus": 204,
+            "latencyMs": 22,
+            "detail": "HTTP 204"
+          }
+        ]
+      },
+      "warehouseReceipt": {
+        "eventId": "d31f6f1f-4d1a-4ecf-bf7a-f67ab75b7034",
+        "saved": true
+      }
+    },
+    {
+      "scenario": "receiver outage followed by automatic recovery",
+      "history": {
+        "event": {
+          "id": "9b0b1126-2c76-49b8-b95e-4b12f788b481",
+          "destination": "warehouse",
+          "eventType": "order.created",
+          "state": "DELIVERED",
+          "totalAttempts": 2,
+          "replayCount": 0,
+          "createdAt": "2026-11-25T09:02:08.725180Z",
+          "updatedAt": "2026-11-25T09:02:09.430005Z"
+        },
+        "attempts": [
+          {
+            "number": 1,
+            "startedAt": "2026-11-25T09:02:08.757908Z",
+            "finishedAt": "2026-11-25T09:02:08.792438Z",
+            "outcome": "RETRYABLE",
+            "httpStatus": 503,
+            "latencyMs": 24,
+            "detail": "HTTP 503"
+          },
+          {
+            "number": 2,
+            "startedAt": "2026-11-25T09:02:09.409035Z",
+            "finishedAt": "2026-11-25T09:02:09.430005Z",
+            "outcome": "ACKNOWLEDGED",
+            "httpStatus": 204,
+            "latencyMs": 13,
+            "detail": "HTTP 204"
+          }
+        ]
+      },
+      "warehouseReceipt": {
+        "eventId": "9b0b1126-2c76-49b8-b95e-4b12f788b481",
+        "saved": true
+      }
+    },
+    {
+      "scenario": "receiver commits before sender times out",
+      "history": {
+        "event": {
+          "id": "6f659080-d720-4108-8058-a525d33e5cf0",
+          "destination": "warehouse",
+          "eventType": "order.created",
+          "state": "DELIVERED",
+          "totalAttempts": 2,
+          "replayCount": 0,
+          "createdAt": "2026-11-25T09:02:09.518739Z",
+          "updatedAt": "2026-11-25T09:02:12.664387Z"
+        },
+        "attempts": [
+          {
+            "number": 1,
+            "startedAt": "2026-11-25T09:02:09.562135Z",
+            "finishedAt": "2026-11-25T09:02:11.571369Z",
+            "outcome": "UNKNOWN",
+            "httpStatus": null,
+            "latencyMs": 2003,
+            "detail": "HttpTimeoutException"
+          },
+          {
+            "number": 2,
+            "startedAt": "2026-11-25T09:02:12.644545Z",
+            "finishedAt": "2026-11-25T09:02:12.664387Z",
+            "outcome": "ACKNOWLEDGED",
+            "httpStatus": 204,
+            "latencyMs": 8,
+            "detail": "HTTP 204"
+          }
+        ]
+      },
+      "warehouseReceipt": {
+        "eventId": "6f659080-d720-4108-8058-a525d33e5cf0",
+        "saved": true
+      },
+      "totalWarehouseOrderDelta": 1
+    },
+    {
+      "scenario": "retry exhaustion and manual replay with preserved history",
+      "history": {
+        "event": {
+          "id": "0c7c53d2-ab58-4e1d-93e2-fff76a0b9780",
+          "destination": "warehouse",
+          "eventType": "order.created",
+          "state": "DELIVERED",
+          "totalAttempts": 6,
+          "replayCount": 1,
+          "createdAt": "2026-11-25T09:02:12.794058Z",
+          "updatedAt": "2026-11-25T09:02:26.347566Z"
+        },
+        "attempts": [
+          {
+            "number": 1,
+            "startedAt": "2026-11-25T09:02:12.952607Z",
+            "finishedAt": "2026-11-25T09:02:12.967040Z",
+            "outcome": "RETRYABLE",
+            "httpStatus": 503,
+            "latencyMs": 6,
+            "detail": "HTTP 503"
+          },
+          {
+            "number": 2,
+            "startedAt": "2026-11-25T09:02:13.890797Z",
+            "finishedAt": "2026-11-25T09:02:13.908426Z",
+            "outcome": "RETRYABLE",
+            "httpStatus": 503,
+            "latencyMs": 7,
+            "detail": "HTTP 503"
+          },
+          {
+            "number": 3,
+            "startedAt": "2026-11-25T09:02:15.879404Z",
+            "finishedAt": "2026-11-25T09:02:15.942132Z",
+            "outcome": "RETRYABLE",
+            "httpStatus": 503,
+            "latencyMs": 16,
+            "detail": "HTTP 503"
+          },
+          {
+            "number": 4,
+            "startedAt": "2026-11-25T09:02:19.463584Z",
+            "finishedAt": "2026-11-25T09:02:19.522951Z",
+            "outcome": "RETRYABLE",
+            "httpStatus": 503,
+            "latencyMs": 11,
+            "detail": "HTTP 503"
+          },
+          {
+            "number": 5,
+            "startedAt": "2026-11-25T09:02:25.944480Z",
+            "finishedAt": "2026-11-25T09:02:25.978763Z",
+            "outcome": "RETRYABLE",
+            "httpStatus": 503,
+            "latencyMs": 6,
+            "detail": "HTTP 503"
+          },
+          {
+            "number": 6,
+            "startedAt": "2026-11-25T09:02:26.291235Z",
+            "finishedAt": "2026-11-25T09:02:26.347566Z",
+            "outcome": "ACKNOWLEDGED",
+            "httpStatus": 204,
+            "latencyMs": 10,
+            "detail": "HTTP 204"
+          }
+        ]
+      },
+      "warehouseReceipt": {
+        "eventId": "0c7c53d2-ab58-4e1d-93e2-fff76a0b9780",
+        "saved": true
+      },
+      "attemptsBeforeReplay": 5
+    }
+  ],
+  "scope": "Live HTTP checks. Worker lease races are covered by the separate PostgreSQL integration suite."
+}

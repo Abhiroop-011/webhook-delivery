@@ -1,0 +1,50 @@
+{
+  "command": ".\\mvnw.cmd verify",
+  "runLocation": "User PowerShell with Docker access",
+  "build": "SUCCESS",
+  "suites": [
+    {
+      "name": "dev.webhookdelivery.delivery.RetryPolicyTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "dev.webhookdelivery.delivery.WebhookClientTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "dev.webhookdelivery.signing.WebhookSignatureTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "dev.webhookdelivery.delivery.DeliveryFlowIT",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "dev.webhookdelivery.delivery.WorkerConcurrencyIT",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "dev.webhookdelivery.event.EventApiIT",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "totalTests": 13
+}

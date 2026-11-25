@@ -1,0 +1,12 @@
+{
+  "os": "Windows-11-10.0.26300-SP0",
+  "python": "3.13.5",
+  "logicalCpuCount": 12,
+  "workers": 2,
+  "workerCountSource": "User-provided docker compose ps output",
+  "database": "PostgreSQL 16 container",
+  "runtime": "Java 17 container",
+  "client": "Python urllib on the Windows host, four concurrent clients",
+  "network": "127.0.0.1 published Docker ports",
+  "notes": "The first 1000-event run overlapped Maven integration testing. The repeat began after Maven completed."
+}
