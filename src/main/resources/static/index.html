@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Webhook delivery</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<header><div class="bar"><span class="brand">Webhook delivery</span><a href="#warehouse">Demo warehouse</a></div></header>
+<main>
+  <div class="heading"><h1>Delivery console</h1><span id="connection" role="status">Connecting…</span></div>
+  <section class="card send">
+    <div><h2>Send an order</h2><p>Send an <code>order.created</code> event to the demo warehouse.</p></div>
+    <form id="send"><label for="order">Order ID</label><div class="controls"><input id="order" required maxlength="80" autocomplete="off"><button>Send event</button></div></form>
+  </section>
+  <p id="feedback" role="status"></p>
+  <div class="grid">
+    <section class="card"><div class="panel-head"><h2>Recent events</h2><small>Latest 50</small></div><ul id="events"><li>Loading…</li></ul></section>
+    <section class="card"><div class="panel-head"><h2>Attempt history</h2><span id="state"></span></div>
+      <div class="inside"><p id="selection">Select an event to inspect its attempts.</p>
+        <p id="receipt"></p><ol id="attempts"></ol><button id="replay" hidden>Replay event</button>
+      </div>
+    </section>
+  </div>
+  <section id="warehouse" class="card send">
+    <div><h2>Demo warehouse</h2><p id="warehouse-status">Reading receiver status…</p></div>
+    <form id="set-mode"><label for="mode">Receiver behavior</label><div class="controls"><select id="mode">
+      <option value="HEALTHY">Accept deliveries</option><option value="OFFLINE">Return HTTP 503</option>
+      <option value="DELAY_FIRST_ACK">Save, then delay first acknowledgment</option>
+    </select><button class="secondary">Apply</button></div></form>
+  </section>
+</main>
+</body></html>

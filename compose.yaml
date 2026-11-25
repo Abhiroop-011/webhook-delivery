@@ -1,0 +1,50 @@
+name: webhook-delivery
+x-app: &app
+  build: .
+  image: webhook-delivery:local
+  depends_on:
+    postgres:
+      condition: service_healthy
+  environment: &env
+    DB_URL: jdbc:postgresql://postgres:5432/webhooks
+    DB_USER: webhooks
+    DB_PASSWORD: ${DB_PASSWORD:?copy .env.example to .env}
+    WEBHOOK_SECRET: ${WEBHOOK_SECRET:?copy .env.example to .env}
+    WAREHOUSE_URL: http://warehouse:8080/hooks/orders
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: webhooks
+      POSTGRES_USER: webhooks
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?copy .env.example to .env}
+    volumes:
+      - delivery-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U webhooks -d webhooks"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  api:
+    <<: *app
+    environment:
+      <<: *env
+      SPRING_PROFILES_ACTIVE: api
+    ports: ["127.0.0.1:8080:8080"]
+  worker:
+    <<: *app
+    environment:
+      <<: *env
+      SPRING_PROFILES_ACTIVE: worker
+    deploy:
+      replicas: 2
+  warehouse:
+    <<: *app
+    environment:
+      <<: *env
+      SPRING_PROFILES_ACTIVE: warehouse
+    ports: ["127.0.0.1:8081:8080"]
+
+volumes:
+  delivery-data: {}
